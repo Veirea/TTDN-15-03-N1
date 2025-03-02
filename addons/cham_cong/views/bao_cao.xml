@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_bao_cao_form" model="ir.ui.view">
+            <field name="name">bao_cao</field>
+            <field name="model">bao_cao</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Bảng Báo Cáo</div>
+                        <group col="4" string="Thông tin chung">
+                            <!-- <field name="nhan_vien_id"/> -->
+                            <field name="thang"/>
+                            <field name="nam"/>
+                            <field name="tong_gio_lam"/>
+                            <field name="so_lan_di_muon"/>
+                            <field name="so_lan_ve_som"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bao_cao_tree" model="ir.ui.view">
+            <field name="name">bao_cao</field>
+            <field name="model">bao_cao</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- <field name="nhan_vien_id"/> -->
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="tong_gio_lam"/>
+                    <field name="so_lan_di_muon"/>
+                    <field name="so_lan_ve_som"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bao_cao_search">
+            <field name="model">bao_cao</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- <field name="nhan_vien_id"/> -->
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="tong_gio_lam"/>
+                    <field name="so_lan_di_muon"/>
+                    <field name="so_lan_ve_som"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_bao_cao" model="ir.actions.act_window">
+            <field name="name">Báo Cáo</field>
+            <field name="res_model">bao_cao</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="bao_cao_search"/>
+        </record>
+    </data>
+</odoo>
+        
+    

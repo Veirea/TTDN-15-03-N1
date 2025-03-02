@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_root"
+            name="Chấm Công"
+            sequence="0"/>
+          
+        <menuitem name="Lịch Đăng Ký Làm Việc" 
+            id="menu_lich_lam_viec" 
+            parent="menu_root" 
+            sequence="1"
+            action="action_lich_lam_viec"
+        />
+        <menuitem name="Bảng Điểm Danh" 
+            id="menu_bang_diem_danh" 
+            parent="menu_root" 
+            sequence="2"
+            action="action_bang_diem_danh"
+        />
+        <menuitem name="Bảng Báo Cáo" 
+            id="menu_bao_cao" 
+            parent="menu_root" 
+            sequence="3"
+            action="action_bao_cao"
+        />
+    </data>
+</odoo>

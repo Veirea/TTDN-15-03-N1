@@ -12,5 +12,11 @@
             sequence="1"
             action="action_nhan_vien"
         />
+        <menuitem name="Quản lý phòng ban" 
+            id="menu_phong_ban" 
+            parent="menu_root" 
+            sequence="2"
+            action="action_phong_ban"
+        />
     </data>
 </odoo>
