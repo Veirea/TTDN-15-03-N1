@@ -12,9 +12,9 @@
                             <field name="nhan_vien_id"/>
                             <field name="ngay_lam_viec"/>
                             <field name="gio_check_in"/>
-                            <!-- <field name="trang_thai_check_in" widget="statusbar"/> -->
+                            <field name="gio_yeu_cau_check_in"/>
                             <field name="gio_check_out"/>
-                            <!-- <field name="trang_thai_check_out" widget="statusbar"/> -->
+                            <field name="check_in_status"/>
                             <field name="tong_gio_lam" widget="float_time"/>
                             <field name="ca_lam_viec"/>
                         </group>
@@ -31,9 +31,7 @@
                     <field name="nhan_vien_id"/>
                     <field name="ngay_lam_viec"/>
                     <field name="gio_check_in"/>
-                    <!-- <field name="trang_thai_check_in"/> -->
                     <field name="gio_check_out"/>
-                    <!-- <field name="trang_thai_check_out"/> -->
                     <field name="tong_gio_lam" widget="float_time"/>
                     <field name="ca_lam_viec"/>
                 </tree>
@@ -46,9 +44,6 @@
                 <search>
                     <field name="nhan_vien_id"/>
                     <field name="ngay_lam_viec"/>
-                    <!-- <field name="trang_thai_check_in"/>
-                    <field name="trang_thai_check_out"/> -->
-                    <field name="ca_lam_viec"/>
                 </search>
             </field>
         </record>

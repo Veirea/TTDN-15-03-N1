@@ -15,6 +15,19 @@ class BangDiemDanh(models.Model):
 
     lich_lam_viec_id = fields.Many2one('lich_lam_viec', string="Lịch Làm Việc",domain="[('nhan_vien_id', '=', nhan_vien_id), ('ngay_lam_viec', '=', ngay_lam_viec)]")
     ca_lam_viec = fields.Selection(related='lich_lam_viec_id.ca_lam_viec', string="Ca Làm Việc", store=True)
+    gio_yeu_cau_check_in = fields.Datetime('Giờ Yêu Cầu Check-in', related='lich_lam_viec_id.gio_yeu_cau_check_in', store=True)
+    check_in_status = fields.Selection([('dung_gio', 'Đúng Giờ'), ('muon', 'Muộn')], string="Trạng Thái Check-in", compute='_compute_check_in_status', store=True)
+
+    @api.depends('gio_check_in', 'gio_yeu_cau_check_in')
+    def _compute_check_in_status(self):
+        for rec in self:
+            if rec.gio_check_in and rec.gio_yeu_cau_check_in:
+                if rec.gio_check_in <= rec.gio_yeu_cau_check_in:
+                    rec.check_in_status = 'dung_gio'
+                else:
+                    rec.check_in_status = 'muon'
+            else:
+                rec.check_in_status = False
 
     @api.depends('gio_check_in', 'gio_check_out')
     def _compute_tong_gio_lam(self):

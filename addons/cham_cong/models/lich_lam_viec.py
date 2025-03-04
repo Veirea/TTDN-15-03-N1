@@ -14,6 +14,7 @@ class LichLamViec(models.Model):
     gio_bat_dau = fields.Float("Giờ Bắt Đầu", required=True)
     gio_ket_thuc = fields.Float("Giờ Kết Thúc", required=True)
     tong_gio = fields.Float('Tổng Giờ Làm', compute='_compute_tong_gio', store=True)
+    gio_yeu_cau_check_in = fields.Datetime('Giờ Yêu Cầu Check in')
 
     ca_lam_viec = fields.Selection([
         ('sang', 'Ca Sáng (08:00 - 12:00)'),

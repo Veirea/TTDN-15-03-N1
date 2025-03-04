@@ -4,3 +4,4 @@ access_bang_diem_danh,bang_diem_danh.bang_diem_danh,model_bang_diem_danh,base.gr
 access_bao_cao,bao_cao.bao_cao,model_bao_cao,base.group_user,1,1,1,1
 access_nhan_vien,nhan_vien.nhan_vien,model_nhan_vien,base.group_user,1,1,1,1
 access_don_xin_phep,don_xin_phep.don_xin_phep,model_don_xin_phep,base.group_user,1,1,1,1
+access_chuc_vu,chuc_vu.chuc_vu,model_chuc_vu,base.group_user,1,1,1,1

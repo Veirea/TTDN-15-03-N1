@@ -21,7 +21,8 @@ class NhanVien(models.Model):
         ('Khac', 'Khác'),
     ], string="Giới tính", default='...')
 
-    
+    chuc_vu_ids = fields.Many2many("chuc_vu", string="Chức Vụ")
+
     @api.depends("ho_ten_dem", "ten")
     def _compute_ho_va_ten(self):
         for record in self:

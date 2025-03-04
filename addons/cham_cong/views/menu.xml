@@ -36,5 +36,11 @@
             sequence="5"
             action="action_don_xin_phep"
         />
+        <menuitem name="Chức Vụ" 
+            id="menu_chuc_vu" 
+            parent="menu_root" 
+            sequence="6"
+            action="action_chuc_vu"
+        />
     </data>
 </odoo>
