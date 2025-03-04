@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <data noupdate="1">
         <record id="view_lich_lam_viec_form" model="ir.ui.view">
             <field name="name">lich_lam_viec</field>
             <field name="model">lich_lam_viec</field>
@@ -9,9 +9,11 @@
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px">Lịch Đăng Ký Làm Việc</div>
                         <group col="4" string="Thông tin chung">
-                            <!-- <field name="nhan_vien_id"/> -->
+                            <field name="nhan_vien_id"/>
                             <field name="ngay_lam_viec"/>
                             <field name="ca_lam_viec"/>
+                            <field name="gio_bat_dau" widget="float_time"/>
+                            <field name="gio_ket_thuc" widget="float_time"/>
                             <field name="trang_thai" readonly="1"/>
                         </group>
                     </sheet>
@@ -24,9 +26,11 @@
             <field name="model">lich_lam_viec</field>
             <field name="arch" type="xml">
                 <tree>
-                    <!-- <field name="nhan_vien_id"/> -->
+                    <field name="nhan_vien_id"/>
                     <field name="ngay_lam_viec"/>
                     <field name="ca_lam_viec"/>
+                    <field name="gio_bat_dau" widget="float_time"/>
+                    <field name="gio_ket_thuc" widget="float_time"/>
                     <field name="trang_thai"/>
                 </tree>
             </field>
@@ -36,9 +40,11 @@
             <field name="model">lich_lam_viec</field>
             <field name="arch" type="xml">
                 <search>
-                    <!-- <field name="nhan_vien_id"/> -->
+                    
                     <field name="ngay_lam_viec"/>
                     <field name="ca_lam_viec"/>
+                    <field name="gio_bat_dau" widget="float_time"/>
+                    <field name="gio_ket_thuc" widget="float_time"/>
                     <field name="trang_thai"/>
                 </search>
             </field>
@@ -49,6 +55,18 @@
             <field name="res_model">lich_lam_viec</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="lich_lam_viec_search"/>
+        </record>
+
+        <!-- Cron Job để tự động duyệt lịch làm việc sau 1 phút -->
+        <record id="cron_auto_duyet_lich" model="ir.cron">
+            <field name="name">Duyệt Lịch Làm Việc Tự Động</field>
+            <field name="model_id" ref="model_lich_lam_viec"/>
+            <field name="state">code</field>
+            <field name="code">model.auto_duyet_lich_lam_viec()</field>
+            <field name="interval_number">1</field>  <!-- Chạy mỗi 1 phút -->
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"></field>
         </record>
     </data>
 </odoo>

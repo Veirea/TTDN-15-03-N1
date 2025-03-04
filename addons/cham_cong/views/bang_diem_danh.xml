@@ -2,18 +2,21 @@
 <odoo>
     <data>
         <record id="view_bang_diem_danh_form" model="ir.ui.view">
-            <field name="name">bang_diem_danh</field>
+            <field name="name">bang_diem_danh.form</field>
             <field name="model">bang_diem_danh</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <div class="oe_read_only" style="font-size:25px">Bảng Điểm Danh</div>
+                        <h1>Bảng Điểm Danh</h1>
                         <group col="4" string="Thông tin chung">
-                            <!-- <field name="nhan_vien_id"/> -->
+                            <field name="nhan_vien_id"/>
                             <field name="ngay_lam_viec"/>
                             <field name="gio_check_in"/>
+                            <!-- <field name="trang_thai_check_in" widget="statusbar"/> -->
                             <field name="gio_check_out"/>
-                            <field name="trang_thai" readonly="1"/>
+                            <!-- <field name="trang_thai_check_out" widget="statusbar"/> -->
+                            <field name="tong_gio_lam" widget="float_time"/>
+                            <field name="ca_lam_viec"/>
                         </group>
                     </sheet>
                 </form>
@@ -21,15 +24,18 @@
         </record>
 
         <record id="view_bang_diem_danh_tree" model="ir.ui.view">
-            <field name="name">bang_diem_danh</field>
+            <field name="name">bang_diem_danh.tree</field>
             <field name="model">bang_diem_danh</field>
             <field name="arch" type="xml">
                 <tree>
-                    <!-- <field name="nhan_vien_id"/> -->
+                    <field name="nhan_vien_id"/>
                     <field name="ngay_lam_viec"/>
                     <field name="gio_check_in"/>
+                    <!-- <field name="trang_thai_check_in"/> -->
                     <field name="gio_check_out"/>
-                    <field name="trang_thai"/>
+                    <!-- <field name="trang_thai_check_out"/> -->
+                    <field name="tong_gio_lam" widget="float_time"/>
+                    <field name="ca_lam_viec"/>
                 </tree>
             </field>
         </record>
@@ -38,11 +44,11 @@
             <field name="model">bang_diem_danh</field>
             <field name="arch" type="xml">
                 <search>
-                    <!-- <field name="nhan_vien_id"/> -->
+                    <field name="nhan_vien_id"/>
                     <field name="ngay_lam_viec"/>
-                    <field name="gio_check_in"/>
-                     <field name="gio_check_out"/>
-                    <field name="trang_thai"/>
+                    <!-- <field name="trang_thai_check_in"/>
+                    <field name="trang_thai_check_out"/> -->
+                    <field name="ca_lam_viec"/>
                 </search>
             </field>
         </record>
@@ -55,5 +61,3 @@
         </record>
     </data>
 </odoo>
-        
-    

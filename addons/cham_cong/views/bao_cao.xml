@@ -9,12 +9,14 @@
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px">Bảng Báo Cáo</div>
                         <group col="4" string="Thông tin chung">
-                            <!-- <field name="nhan_vien_id"/> -->
+                            <field name="nhan_vien_id"/>
                             <field name="thang"/>
                             <field name="nam"/>
                             <field name="tong_gio_lam"/>
                             <field name="so_lan_di_muon"/>
                             <field name="so_lan_ve_som"/>
+                            <field name="so_nhan_vien_dang_ky"/>
+                            <field name="so_don_xin_phep"/>
                         </group>
                     </sheet>
                 </form>
@@ -26,12 +28,14 @@
             <field name="model">bao_cao</field>
             <field name="arch" type="xml">
                 <tree>
-                    <!-- <field name="nhan_vien_id"/> -->
+                    <field name="nhan_vien_id"/>
                     <field name="thang"/>
                     <field name="nam"/>
                     <field name="tong_gio_lam"/>
                     <field name="so_lan_di_muon"/>
                     <field name="so_lan_ve_som"/>
+                    <field name="so_nhan_vien_dang_ky"/>
+                    <field name="so_don_xin_phep"/>
                 </tree>
             </field>
         </record>
@@ -46,6 +50,8 @@
                     <field name="tong_gio_lam"/>
                     <field name="so_lan_di_muon"/>
                     <field name="so_lan_ve_som"/>
+                    <field name="so_nhan_vien_dang_ky"/>
+                    <field name="so_don_xin_phep"/>
                 </search>
             </field>
         </record>

@@ -24,5 +24,17 @@
             sequence="3"
             action="action_bao_cao"
         />
+         <menuitem name="Nhân Viên" 
+            id="menu_nhan_vien" 
+            parent="menu_root" 
+            sequence="4"
+            action="action_nhan_vien"
+        />
+         <menuitem name="Đơn Xin Phép" 
+            id="menu_don_xin_phep" 
+            parent="menu_root" 
+            sequence="5"
+            action="action_don_xin_phep"
+        />
     </data>
 </odoo>

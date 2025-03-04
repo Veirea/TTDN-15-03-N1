@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class NhanVien(models.Model):
     _name = 'nhan_vien'
     _description = 'Bảng chứa thông tin nhân viên'
-
+    _rec_name = 'ma_dinh_danh'
 
     ma_dinh_danh = fields.Char("Mã định danh", required=True)
     ho_ten_dem = fields.Char("Họ Tên Đệm", required=True)
@@ -20,8 +20,6 @@ class NhanVien(models.Model):
         ('Nu', 'Nữ'),
         ('Khac', 'Khác'),
     ], string="Giới tính", default='...')
-
-    # lich_lam_viec_ids = fields.One2many("lich_lam_viec","nhan_vien_id", string="Lịch làm việc")
 
     
     @api.depends("ho_ten_dem", "ten")

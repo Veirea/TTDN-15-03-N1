@@ -28,6 +28,8 @@
         'views/lich_lam_viec.xml',
         'views/bang_diem_danh.xml',
         'views/bao_cao.xml',
+        'views/nhan_vien.xml',
+        'views/don_xin_phep.xml',
         'views/menu.xml',
         
     ],
