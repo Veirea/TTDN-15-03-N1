@@ -7,16 +7,20 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <h1>Bảng Điểm Danh</h1>
-                        <group col="4" string="Thông tin chung">
-                            <field name="nhan_vien_id"/>
-                            <field name="ngay_lam_viec"/>
-                            <field name="gio_check_in"/>
-                            <field name="gio_yeu_cau_check_in"/>
-                            <field name="gio_check_out"/>
-                            <field name="check_in_status"/>
-                            <field name="tong_gio_lam" widget="float_time"/>
-                            <field name="ca_lam_viec"/>
+                        <group>
+                            <group string="Thông tin chung">
+                                <field name="nhan_vien_id"/>
+                                <field name="ma_dinh_danh"/>
+                                <field name="ngay_lam_viec"/>
+                                <field name="gio_check_in"/>
+                                <field name="gio_check_out"/>
+                                <field name="tong_gio_lam" widget="float_time"/>
+                            </group>
+                            <group string="Chi tiết Ca Làm Việc">
+                                <field name="lich_lam_viec_id"/>
+                                <field name="ca_lam_viec"/>
+                                <field name="trang_thai_cham_cong"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -29,21 +33,27 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="nhan_vien_id"/>
+                    <field name="ma_dinh_danh"/>
                     <field name="ngay_lam_viec"/>
                     <field name="gio_check_in"/>
                     <field name="gio_check_out"/>
                     <field name="tong_gio_lam" widget="float_time"/>
+                    <field name="lich_lam_viec_id"/>
                     <field name="ca_lam_viec"/>
+                    <field name="trang_thai_cham_cong"/>
                 </tree>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="bang_diem_danh_search">
+        <record id="bang_diem_danh_search" model="ir.ui.view">
+            <field name="name">bang_diem_danh.search</field>
             <field name="model">bang_diem_danh</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="nhan_vien_id"/>
+                    <!-- <field name="nhan_vien_id"/> -->
+                    <field name="ma_dinh_danh"/>
                     <field name="ngay_lam_viec"/>
+                    <field name="trang_thai_cham_cong"/>
                 </search>
             </field>
         </record>

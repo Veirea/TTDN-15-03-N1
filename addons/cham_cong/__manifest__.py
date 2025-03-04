@@ -31,6 +31,7 @@
         'views/nhan_vien.xml',
         'views/don_xin_phep.xml',
         'views/chuc_vu.xml',
+        'views/phong_ban.xml',
         'views/menu.xml',
         
     ],

@@ -7,5 +7,5 @@ class ChucVu(models.Model):
 
     ten_chuc_vu = fields.Char("Tên chức vụ", required=True)
     mo_ta = fields.Text("Mô tả chức vụ")
-    nhan_vien_ids = fields.Many2many("nhan_vien", string="Nhân viên")
-    
+    nhan_vien_ids = fields.One2many("nhan_vien","chuc_vu", string="Nhân viên")
+    lich_lam_viec_ids = fields.One2many("lich_lam_viec", "chuc_vu", string="Lịch Làm Việc")

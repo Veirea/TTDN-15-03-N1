@@ -42,5 +42,11 @@
             sequence="6"
             action="action_chuc_vu"
         />
+        <menuitem name="Phòng Ban" 
+            id="menu_phong_ban" 
+            parent="menu_root" 
+            sequence="7"
+            action="action_phong_ban"
+        />
     </data>
 </odoo>
