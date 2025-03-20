@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="view_bang_diem_danh_form" model="ir.ui.view">
-            <field name="name">bang_diem_danh.form</field>
-            <field name="model">bang_diem_danh</field>
+        <record id="view_diem_danh_form" model="ir.ui.view">
+            <field name="name">diem_danh.form</field>
+            <field name="model">diem_danh</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -27,9 +27,9 @@
             </field>
         </record>
 
-        <record id="view_bang_diem_danh_tree" model="ir.ui.view">
-            <field name="name">bang_diem_danh.tree</field>
-            <field name="model">bang_diem_danh</field>
+        <record id="view_diem_danh_tree" model="ir.ui.view">
+            <field name="name">diem_danh.tree</field>
+            <field name="model">diem_danh</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="nhan_vien_id"/>
@@ -45,9 +45,9 @@
             </field>
         </record>
 
-        <record id="bang_diem_danh_search" model="ir.ui.view">
-            <field name="name">bang_diem_danh.search</field>
-            <field name="model">bang_diem_danh</field>
+        <record id="diem_danh_search" model="ir.ui.view">
+            <field name="name">diem_danh.search</field>
+            <field name="model">diem_danh</field>
             <field name="arch" type="xml">
                 <search>
                     <!-- <field name="nhan_vien_id"/> -->
@@ -58,11 +58,11 @@
             </field>
         </record>
 
-        <record id="action_bang_diem_danh" model="ir.actions.act_window">
+        <record id="action_diem_danh" model="ir.actions.act_window">
             <field name="name">Bảng Điểm Danh</field>
-            <field name="res_model">bang_diem_danh</field>
+            <field name="res_model">diem_danh</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="bang_diem_danh_search"/>
+            <field name="search_view_id" ref="diem_danh_search"/>
         </record>
     </data>
 </odoo>

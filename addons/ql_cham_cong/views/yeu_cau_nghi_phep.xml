@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_yeu_cau_nghi_phep_form" model="ir.ui.view">
+        <field name="name">yeu_cau_nghi_phep.form</field>
+        <field name="model">yeu_cau_nghi_phep</field>
+        <field name="arch" type="xml">
+            <form string="Yêu Cầu Nghỉ Phép">
+                <sheet>
+                    <group col="4">
+                        <field name="nhan_vien_id"/>
+                        <field name="hop_dong_id" readonly="1"/>
+                        <field name="so_ngay_nghi"/>
+                        <field name="ngay_bat_dau"/>
+                        <field name="ngay_ket_thuc"/>
+                        <field name="loai_nghi_phep"/> 
+                        <!-- <field name="ly_do" widget="text"/> -->
+                        <field name="trang_thai" widget="statusbar" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_yeu_cau_nghi_phep_tree" model="ir.ui.view">
+        <field name="name">yeu_cau_nghi_phep.tree</field>
+        <field name="model">yeu_cau_nghi_phep</field>
+        <field name="arch" type="xml">
+            <tree string="Yêu Cầu Nghỉ Phép">
+                <field name="nhan_vien_id"/>
+                <field name="hop_dong_id"/>
+                <field name="so_ngay_nghi"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+                <field name="loai_nghi_phep"/> 
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_yeu_cau_nghi_phep_search" model="ir.ui.view">
+        <field name="name">yeu_cau_nghi_phep.search</field>
+        <field name="model">yeu_cau_nghi_phep</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nhan_vien_id"/>
+                <!-- <field name="loai_nghi_phep"/> -->
+                <field name="trang_thai"/>
+                <field name="ngay_bat_dau"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_yeu_cau_nghi_phep_graph" model="ir.ui.view">
+        <field name="name">yeu_cau_nghi_phep.graph</field>
+        <field name="model">yeu_cau_nghi_phep</field>
+        <field name="arch" type="xml">
+            <graph string="Thống Kê Yêu Cầu Nghỉ Phép" type="bar">
+                <field name="trang_thai" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_yeu_cau_nghi_phep" model="ir.actions.act_window">
+        <field name="name">Yêu Cầu Nghỉ Phép</field>
+        <field name="res_model">yeu_cau_nghi_phep</field>
+        <field name="view_mode">tree,form,graph</field>
+    </record>
+    <data noupdate="1">
+        <record id="auto_approve_leave_cron" model="ir.cron">
+            <field name="name">Auto Approve Leave Requests</field>
+            <field name="model_id" ref="model_yeu_cau_nghi_phep"/>
+            <field name="state">code</field>
+            <field name="code">model.tu_dong_duyet_nghi_phep()</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

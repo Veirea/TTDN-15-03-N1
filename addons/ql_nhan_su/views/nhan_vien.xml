@@ -25,8 +25,8 @@
 
                             <page string="Công việc">
                                 <group>
-                                    <field name="phong_ban"/>
-                                    <field name="chuc_vu"/>
+                                    <field name="phong_ban_id"/>
+                                    <field name="chuc_vu_id"/>
                                 </group>
                             </page>
                         </notebook>
@@ -47,8 +47,8 @@
                     <field name="ho_va_ten"/>
                     <field name="gioi_tinh"/>
                     <field name="email"/>
-                    <field name="chuc_vu"/>
-                    <field name="phong_ban"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="phong_ban_id"/>
                     <field name="so_dien_thoai"/>
                 </tree>
             </field>
@@ -63,8 +63,8 @@
                     <field name="ho_va_ten"/>
                     <field name="gioi_tinh"/>
                     <field name="email"/>
-                    <field name="chuc_vu"/>
-                    <field name="phong_ban"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="phong_ban_id"/>
                     <field name="so_dien_thoai"/>
                 </search>
             </field>

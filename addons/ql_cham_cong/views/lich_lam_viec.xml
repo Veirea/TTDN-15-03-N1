@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_lich_lam_viec_form" model="ir.ui.view">
+        <field name="name">lich_lam_viec.form</field>
+        <field name="model">lich_lam_viec</field>
+        <field name="arch" type="xml">
+            <form string="Lịch Làm Việc">
+                <sheet>
+                    <group col="4">
+                        <field name="nhan_vien_id"/>
+                        <field name="ca_lam_viec"/>
+                        <field name="ngay_lam_viec"/>
+                        <field name="gio_bat_dau" widget="float_time"/>
+                        <field name="gio_ket_thuc" widget="float_time"/>
+                        <field name="phong_ban_id" readonly="1"/>
+                        <field name="chuc_vu_id" readonly="1"/>
+                        <field name="trang_thai" widget="statusbar" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_lich_lam_viec_tree" model="ir.ui.view">
+        <field name="name">lich_lam_viec.tree</field>
+        <field name="model">lich_lam_viec</field>
+        <field name="arch" type="xml">
+            <tree string="Lịch Làm Việc">
+                <field name="nhan_vien_id"/>
+                <field name="ca_lam_viec"/>
+                <field name="ngay_lam_viec"/>
+                <field name="gio_bat_dau" widget="float_time"/>
+                <field name="gio_ket_thuc" widget="float_time"/>
+                <field name="phong_ban_id" readonly="1"/>
+                <field name="chuc_vu_id" readonly="1"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_lich_lam_viec_graph" model="ir.ui.view">
+        <field name="name">lich_lam_viec.graph</field>
+        <field name="model">lich_lam_viec</field>
+        <field name="arch" type="xml">
+            <graph string="Thống Kê Lịch Làm Việc" type="bar">
+                <field name="trang_thai" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_lich_lam_viec_search" model="ir.ui.view">
+        <field name="name">lich_lam_viec.search</field>
+        <field name="model">lich_lam_viec</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="ca_lam_viec"/>
+                <field name="trang_thai"/>
+                <field name="ngay_lam_viec"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_lich_lam_viec" model="ir.actions.act_window">
+        <field name="name">Lịch Làm Việc</field>
+        <field name="res_model">lich_lam_viec</field>
+        <field name="view_mode">tree,form,graph</field>
+    </record>
+</odoo>

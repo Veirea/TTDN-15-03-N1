@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "cham_cong",
+    'name': "ql_cham_cong",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,18 +20,15 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','ql_nhan_su'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/lich_lam_viec.xml',
-        'views/bang_diem_danh.xml',
+        'views/diem_danh.xml',
+        'views/yeu_cau_nghi_phep.xml',
         'views/bao_cao.xml',
-        'views/nhan_vien.xml',
-        'views/don_xin_phep.xml',
-        'views/chuc_vu.xml',
-        'views/phong_ban.xml',
         'views/menu.xml',
         
     ],

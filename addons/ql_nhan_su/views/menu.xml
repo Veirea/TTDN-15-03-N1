@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_root"
+            name="Qly Nhân Viên"
+            sequence="0"/>
+         <menuitem name="Nhân Viên" 
+            id="menu_nhan_vien" 
+            parent="menu_root" 
+            sequence="1"
+            action="action_nhan_vien"
+        />
+        <menuitem name="Chức Vụ" 
+            id="menu_chuc_vu" 
+            parent="menu_root" 
+            sequence="2"
+            action="action_chuc_vu"
+        />
+        <menuitem name="Phòng Ban" 
+            id="menu_phong_ban" 
+            parent="menu_root" 
+            sequence="3"
+            action="action_phong_ban"
+        />
+        <menuitem name="Hợp Đồng" 
+            id="menu_hop_dong" 
+            parent="menu_root" 
+            sequence="4"
+            action="action_hop_dong"
+        />
+    </data>
+</odoo>
