@@ -2,4 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_lich_lam_viec,lich_lam_viec.lich_lam_viec,model_lich_lam_viec,base.group_user,1,1,1,1
 access_diem_danh,diem_danh.diem_danh,model_diem_danh,base.group_user,1,1,1,1
 access_yeu_cau_nghi_phep,yeu_cau_nghi_phep.yeu_cau_nghiphep,model_yeu_cau_nghi_phep,base.group_user,1,1,1,1
-access_bao_cao,bao_cao.bao_cao,model_bao_cao,base.group_user,1,1,1,1
+access_luu_file,access.luu.file,model_luu_file,,1,1,1,1

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_lich_lam_viec_form" model="ir.ui.view">
+            <field name="name">lich_lam_viec.form</field>
+            <field name="model">lich_lam_viec</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2 class="oe_title" style="color: #2c3e50; text-align: center;">
+                            📅 Lịch Đăng Ký Làm Việc
+                        </h2>
+                        <group col="4" string="Thông tin chung">
+                            <field name="nhan_vien_id"/>
+                            <field name="ngay_lam_viec"/>
+                            <field name="ca_lam_viec"/>
+                            <field name="gio_bat_dau" widget="float_time"/>
+                            <field name="gio_ket_thuc" widget="float_time"/>
+                        </group>
+                        <group>
+                            <field name="trang_thai" widget="statusbar" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Thông Tin Nhân Viên">
+                                <group col="4">
+                                    <field name="phong_ban" readonly="1"/>
+                                    <field name="chuc_vu" readonly="1"/>
+                                </group>
+                            </page>
+                            <page string="Thống Kê">
+                                <group col="4">
+                                    <field name="so_buoi_di_muon" readonly="1"/>
+                                    <field name="so_buoi_nghi" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_lich_lam_viec_tree" model="ir.ui.view">
+            <field name="name">lich_lam_viec.tree</field>
+            <field name="model">lich_lam_viec</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nhan_vien_id"/>
+                    <field name="ngay_lam_viec"/>
+                    <field name="ca_lam_viec"/>
+                    <field name="gio_bat_dau" widget="float_time"/>
+                    <field name="gio_ket_thuc" widget="float_time"/>
+                    <field name="trang_thai" 
+                           decoration-danger="trang_thai=='tu_choi'"
+                           decoration-success="trang_thai=='da_duyet'"
+                           decoration-warning="trang_thai=='cho_duyet'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_lich_lam_viec_kanban" model="ir.ui.view">
+            <field name="name">lich_lam_viec.kanban</field>
+            <field name="model">lich_lam_viec</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="nhan_vien_id"/>
+                    <field name="ngay_lam_viec"/>
+                    <field name="ca_lam_viec"/>
+                    <field name="trang_thai"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_details">
+                                <strong><field name="nhan_vien_id"/></strong>
+                                <br/>
+                                <span><field name="ngay_lam_viec"/> - <field name="ca_lam_viec"/></span>
+                                <br/>
+                                <span>Trạng thái: <field name="trang_thai"/></span>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Graph View for Registration Statistics -->
+        <record id="view_lich_lam_viec_graph_dang_ky" model="ir.ui.view">
+            <field name="name">lich_lam_viec.graph.dang_ky</field>
+            <field name="model">lich_lam_viec</field>
+            <field name="arch" type="xml">
+                <graph string="Thống Kê Đăng Ký Trong Tháng" type="bar">
+                    <field name="ngay_lam_viec" type="row"/>
+                    <field name="id" type="measure" string="Lượt Đăng Ký"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Graph View for Approval Status Statistics -->
+        <record id="view_lich_lam_viec_graph_trang_thai" model="ir.ui.view">
+            <field name="name">lich_lam_viec.graph.trang_thai</field>
+            <field name="model">lich_lam_viec</field>
+            <field name="arch" type="xml">
+                <graph string="Thống Kê Trạng Thái Duyệt" type="bar">
+                    <field name="trang_thai" type="row"/>
+                    <field name="id" type="measure" string="Số Lượng"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record model="ir.ui.view" id="lich_lam_viec_search">
+            <field name="model">lich_lam_viec</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ngay_lam_viec"/>
+                    <field name="ca_lam_viec"/>
+                    <field name="trang_thai"/>
+                    <filter name="filter_cho_duyet" string="Chờ Duyệt" domain="[('trang_thai','=','cho_duyet')]"/>
+                    <filter name="filter_da_duyet" string="Đã Duyệt" domain="[('trang_thai','=','da_duyet')]"/>
+                    <filter name="filter_tu_choi" string="Từ Chối" domain="[('trang_thai','=','tu_choi')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_lich_lam_viec" model="ir.actions.act_window">
+            <field name="name">Lịch Làm Việc</field>
+            <field name="res_model">lich_lam_viec</field>
+            <field name="view_mode">tree,form,graph,kanban</field>
+            <field name="search_view_id" ref="lich_lam_viec_search"/>
+        </record>
+
+        <!-- Cron Job -->
+        <record id="cron_auto_duyet_lich_lam_viec" model="ir.cron">
+            <field name="name">Tự Động Xử Lý Lịch Làm Việc</field>
+            <field name="model_id" ref="model_lich_lam_viec"/>
+            <field name="state">code</field>
+            <field name="code">model.auto_duyet_lich_lam_viec()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

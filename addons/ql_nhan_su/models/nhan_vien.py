@@ -12,7 +12,7 @@ class NhanVien(models.Model):
     que_quan = fields.Char("Quê quán")
     email = fields.Char("Email")
     so_dien_thoai = fields.Char("Số điện thoại")
-    hop_dong_id = fields.Many2one("hop_dong", string="Hợp đồng hiện tại", compute="_compute_hop_dong", store=True)
+    
 
     gioi_tinh = fields.Selection([
         ('Nam', 'Nam'),

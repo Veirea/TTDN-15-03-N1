@@ -24,11 +24,5 @@
             sequence="3"
             action="action_yeu_cau_nghi_phep"
         />
-         <menuitem name="Báo Cáo" 
-            id="menu_bao_cao" 
-            parent="menu_root" 
-            sequence="4"
-            action="action_bao_cao"
-        />
     </data>
 </odoo>

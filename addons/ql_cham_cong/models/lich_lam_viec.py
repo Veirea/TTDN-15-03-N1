@@ -18,10 +18,31 @@ class LichLamViec(models.Model):
         ('da_duyet', 'Đã Duyệt'),
         ('tu_choi', 'Từ Chối')
     ], string="Trạng Thái", default="cho_duyet", tracking=True)
+
+    loai_cong_viec = fields.Selection([
+    ('van_phong', 'Làm việc tại văn phòng'),
+    ('tu_xa', 'Làm việc từ xa'),
+    ('hop', 'Họp'),
+    ('dao_tao', 'Đào tạo'),
+    ('khac', 'Khác'),
+    ], string="Loại công việc", default="van_phong")
+
+    lap_lai = fields.Selection([
+    ('khong', 'Không lặp lại'),
+    ('hang_tuan', 'Hàng tuần'),
+    ('hang_thang', 'Hàng tháng'),
+    ], string="Lặp lại", default="khong")
     
+    muc_do_uu_tien = fields.Selection([
+    ('cao', 'Cao'),
+    ('trung_binh', 'Trung bình'),
+    ('thap', 'Thấp'),
+    ], string="Mức độ ưu tiên", default="trung_binh")
+    
+    ngay_ket_thuc_lap_lai = fields.Date(string="Ngày kết thúc lặp lại")
     ngay_lam_viec = fields.Date(string="Ngày làm việc", default=fields.Date.today(), required=True)
-    gio_bat_dau = fields.Float("Giờ Bắt Đầu", required=True)
-    gio_ket_thuc = fields.Float("Giờ Kết Thúc", required=True)
+    gio_bat_dau = fields.Float("Giờ Bắt Đầu" )
+    gio_ket_thuc = fields.Float("Giờ Kết Thúc")
     tong_gio = fields.Float('Tổng Giờ Làm', compute='_compute_tong_gio', store=True)
     nhan_vien_id = fields.Many2one('nhan_vien', string="Nhân viên")
     phong_ban_id = fields.Many2one('phong_ban', string="Phòng ban", compute='_compute_phong_ban_va_chuc_vu', store=True)

@@ -8,20 +8,20 @@
                 <form>
                     <sheet>
                         <group>
-                            <group string="Thông tin chung">
+                            <group string="Thông Tin Điểm Danh">
                                 <field name="nhan_vien_id"/>
-                                <field name="ma_dinh_danh"/>
                                 <field name="ngay_lam_viec"/>
-                                <field name="gio_check_in"/>
-                                <field name="gio_check_out"/>
-                                <field name="tong_gio_lam" widget="float_time"/>
+                                <!-- <field name="gio_check_in"/> -->
                             </group>
                             <group string="Chi tiết Ca Làm Việc">
                                 <field name="lich_lam_viec_id"/>
                                 <field name="ca_lam_viec"/>
-                                <field name="trang_thai_cham_cong"/>
+                                <field name="trang_thai_diem_danh" readonly="1"/>
                             </group>
                         </group>
+                        <footer>
+                            <button name="check_in_out" type="object" string="Check-In" class="oe_highlight"/>
+                        </footer>
                     </sheet>
                 </form>
             </field>
@@ -33,14 +33,11 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="nhan_vien_id"/>
-                    <field name="ma_dinh_danh"/>
                     <field name="ngay_lam_viec"/>
                     <field name="gio_check_in"/>
-                    <field name="gio_check_out"/>
-                    <field name="tong_gio_lam" widget="float_time"/>
                     <field name="lich_lam_viec_id"/>
                     <field name="ca_lam_viec"/>
-                    <field name="trang_thai_cham_cong"/>
+                    <field name="trang_thai_diem_danh"/>
                 </tree>
             </field>
         </record>
@@ -50,10 +47,7 @@
             <field name="model">diem_danh</field>
             <field name="arch" type="xml">
                 <search>
-                    <!-- <field name="nhan_vien_id"/> -->
-                    <field name="ma_dinh_danh"/>
                     <field name="ngay_lam_viec"/>
-                    <field name="trang_thai_cham_cong"/>
                 </search>
             </field>
         </record>

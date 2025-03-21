@@ -55,8 +55,5 @@
         <field name="res_model">hop_dong</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <!-- Menu -->
-    <menuitem id="menu_hop_dong_root" name="Hợp Đồng"/>
-    <menuitem id="menu_hop_dong" name="Danh Sách Hợp Đồng" parent="menu_hop_dong_root" action="action_hop_dong"/>
+    
 </odoo>
