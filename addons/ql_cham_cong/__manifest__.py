@@ -28,6 +28,7 @@
         'views/lich_lam_viec.xml',
         'views/diem_danh.xml',
         'views/yeu_cau_nghi_phep.xml',
+        # 'views/lich_su_dang_ky.xml',
         'views/menu.xml',
         
     ],

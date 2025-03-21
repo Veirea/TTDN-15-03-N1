@@ -3,3 +3,4 @@ access_lich_lam_viec,lich_lam_viec.lich_lam_viec,model_lich_lam_viec,base.group_
 access_diem_danh,diem_danh.diem_danh,model_diem_danh,base.group_user,1,1,1,1
 access_yeu_cau_nghi_phep,yeu_cau_nghi_phep.yeu_cau_nghiphep,model_yeu_cau_nghi_phep,base.group_user,1,1,1,1
 access_luu_file,access.luu.file,model_luu_file,,1,1,1,1
+access_lich_su_dang_ky,lich_su_dang_ky.lich_su_dang_ky,model_lich_su_dang_ky,base.group_user,1,1,1,1

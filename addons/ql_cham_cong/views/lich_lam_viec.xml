@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Form View -->
     <record id="view_lich_lam_viec_form" model="ir.ui.view">
         <field name="name">lich_lam_viec.form</field>
         <field name="model">lich_lam_viec</field>
@@ -9,10 +8,12 @@
                 <sheet>
                     <group col="4">
                         <field name="nhan_vien_id"/>
+                        <field name="ma_dinh_danh" readonly="1"/>
+                        <field name="so_dien_thoai" readonly="1"/>
                         <field name="ca_lam_viec"/>
                         <field name="ngay_lam_viec"/>
-                        <!-- <field name="gio_bat_dau" widget="float_time" /> -->
-                        <!-- <field name="gio_ket_thuc" widget="float_time"/> -->
+                    </group>
+                    <group col="4">
                         <field name="phong_ban_id" readonly="1"/>
                         <field name="chuc_vu_id" readonly="1"/>
                         <field name="loai_cong_viec"/>
@@ -23,60 +24,73 @@
                     </group>
                     <notebook>
                         <page string="Thông Tin Nhân Viên">
-                            <group col="4">
+                            <group>
                                 <field name="phong_ban_id" readonly="1"/>
                                 <field name="chuc_vu_id" readonly="1"/>
+                                <field name="ma_dinh_danh" readonly="1"/>
+                                <field name="so_dien_thoai" readonly="1"/>
                             </group>
                         </page>
-                        <!-- <page string="Thống Kê">
-                            <group col="4">
-                                <field name="so_buoi_di_muon" readonly="1"/>
-                                <field name="so_buoi_nghi" readonly="1"/>
+                        <page string="Tệp Lưu Trữ">
+                            <group>
+                                <field name="luu_file_id">
+                                    <tree editable="bottom">
+                                        <field name="luu_file" filename="luu_file_name" widget="binary"/>
+                                        <field name="luu_file_name" readonly="1"/> 
+                                    </tree>
+                                </field>
                             </group>
-                        </page> -->
+                        </page>
+                        <page string="Lịch Sử Đăng Ký">
+                            <group>
+                                <field name="lich_su_dang_ky_ids">
+                                    <tree editable="bottom">
+                                        <field name="ngay_lam_viec"/>
+                                        <field name="ca_lam_viec"/>
+                                        <field name="trang_thai"/>
+                                        <field name="ghi_chu"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Tree View -->
     <record id="view_lich_lam_viec_tree" model="ir.ui.view">
         <field name="name">lich_lam_viec.tree</field>
         <field name="model">lich_lam_viec</field>
         <field name="arch" type="xml">
             <tree string="Lịch Làm Việc">
                 <field name="nhan_vien_id"/>
-                <field name="nhan_vien_id"/>
                 <field name="ca_lam_viec"/>
                 <field name="ngay_lam_viec"/>
-                <!-- <field name="gio_bat_dau" widget="float_time" /> -->
-                <!-- <field name="gio_ket_thuc" widget="float_time"/> -->
                 <field name="phong_ban_id" readonly="1"/>
                 <field name="chuc_vu_id" readonly="1"/>
                 <field name="loai_cong_viec"/>
-                <field name="muc_do_uu_tien" decoration-danger="muc_do_uu_tien == 'cao'" decoration-warning="muc_do_uu_tien == 'trung_binh'" decoration-success="muc_do_uu_tien == 'thap'"/>
+                <field name="muc_do_uu_tien" decoration-danger="muc_do_uu_tien == 'cao'" 
+                      decoration-warning="muc_do_uu_tien == 'trung_binh'" 
+                      decoration-success="muc_do_uu_tien == 'thap'"/>
                 <field name="trang_thai" decoration-danger="trang_thai == 'tu_choi'" 
-                                         decoration-success="trang_thai == 'da_duyet'"
-                                         decoration-warning="trang_thai == 'cho_duyet'" />
+                      decoration-success="trang_thai == 'da_duyet'" 
+                      decoration-warning="trang_thai == 'cho_duyet'" />
             </tree>
         </field>
     </record>
 
     <record id="view_lich_lam_viec_graph" model="ir.ui.view">
-    <field name="name">lich_lam_viec.graph</field>
-    <field name="model">lich_lam_viec</field>
-    <field name="arch" type="xml">
-        <graph string="Thống Kê Lịch Làm Việc Theo Phòng Ban" type="bar">
-            <!-- Nhóm dữ liệu theo phòng ban -->
-            <field name="phong_ban_id" type="row"/>
-            <!-- Đếm số lượng lịch làm việc -->
-            <field name="id" type="measure" operator="count"/>
-        </graph>
-    </field>
+        <field name="name">lich_lam_viec.graph</field>
+        <field name="model">lich_lam_viec</field>
+        <field name="arch" type="xml">
+            <graph string="Thống Kê Lịch Làm Việc" type="bar">
+                <field name="phong_ban_id" type="row"/> 
+                <field name="ngay_lam_viec" type="column" operator="date_trunc('month')"/> 
+                <field name="id" type="measure" operator="count"/> 
+            </graph>
+        </field>
     </record>
-
-    <!-- Search View -->
     <record id="view_lich_lam_viec_search" model="ir.ui.view">
         <field name="name">lich_lam_viec.search</field>
         <field name="model">lich_lam_viec</field>
@@ -89,7 +103,6 @@
         </field>
     </record>
 
-    <!-- Action -->
     <record id="action_lich_lam_viec" model="ir.actions.act_window">
         <field name="name">Lịch Làm Việc</field>
         <field name="res_model">lich_lam_viec</field>

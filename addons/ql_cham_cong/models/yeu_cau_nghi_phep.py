@@ -7,6 +7,8 @@ class YeuCauNghiPhep(models.Model):
     _description = "Yêu cầu nghỉ phép"
 
     nhan_vien_id = fields.Many2one("nhan_vien", string="Nhân viên")
+    ma_dinh_danh = fields.Char(related='nhan_vien_id.ma_dinh_danh', string="Mã Định Danh", readonly=True)
+    so_dien_thoai = fields.Char(related='nhan_vien_id.so_dien_thoai', string="Số Điện Thoại", readonly=True)
     hop_dong_id = fields.Many2one('hop_dong', string='Hợp Đồng', compute='_compute_hop_dong', store=True)
     phong_ban_id = fields.Many2one('phong_ban', string='Phòng Ban', related='nhan_vien_id.phong_ban_id', store=True)
     chuc_vu_id = fields.Many2one('chuc_vu', string='Chức Vụ', related='nhan_vien_id.chuc_vu_id', store=True)
@@ -23,10 +25,10 @@ class YeuCauNghiPhep(models.Model):
     ], string="Trạng thái", default="cho_duyet", required=True)
 
     loai_nghi_phep = fields.Selection([
-        ("nghi_phep_nam", "Nghỉ phép năm"),
+        ("nghi_phep", "Nghỉ phép năm"),
         ("nghi_om", "Nghỉ Ốm"),
-        ("nghi_phep_dac_biet", "Nghỉ phép đặc biệt"),
-        ("nghi_phep_khong_luong", "Nghỉ phép không lương"),
+        ("nghi_co_luong", "Nghỉ phép có lương"),
+        ("nghi_dac_biet", "Nghỉ phép đặc biệt"),
     ], string="Loại nghỉ phép", required=True)
 
     @api.depends("ngay_bat_dau", "ngay_ket_thuc")
@@ -56,32 +58,23 @@ class YeuCauNghiPhep(models.Model):
             if not hop_dong:
                 raise ValidationError("Nhân viên này không có hợp đồng đang hoạt động!")
 
-    @api.model
-    def create(self, vals):
-        """Tự động duyệt yêu cầu nghỉ phép nếu hợp đồng có điều khoản tự động duyệt"""
-        record = super(YeuCauNghiPhep, self).create(vals)
-
-        # Tìm hợp đồng sau khi đã tạo bản ghi
-        hop_dong = self.env['hop_dong'].search([
-            ('nhan_vien_id', '=', record.nhan_vien_id.id),
-            ('trang_thai', '=', 'active'),
-        ], limit=1)
-
-        if hop_dong and hop_dong.tu_dong_duyet:
-            record.write({'trang_thai': 'da_duyet'})  # Cập nhật trạng thái đã duyệt
-    
-        return record
-
-    @api.model
-    def tu_dong_duyet_nghi_phep(self):
-        """Cron Job: Tự động duyệt các yêu cầu nghỉ phép nếu hợp đồng có điều khoản cho phép"""
-        yeu_cau_phep = self.search([('trang_thai', '=', 'cho_duyet')])
-    
-        for yc in yeu_cau_phep:
-            hop_dong = self.env['hop_dong'].search([
-                ('nhan_vien_id', '=', yc.nhan_vien_id.id),
-                ('trang_thai', '=', 'active'),
-            ], limit=1)
-
-            if hop_dong and hop_dong.tu_dong_duyet:
-                yc.write({'trang_thai': 'da_duyet'})
+    @api.constrains('nhan_vien_id', 'so_ngay_nghi', 'loai_nghi_phep')
+    def _check_nghi_phep(self):
+        for record in self:
+            hop_dong = self.env['hop_dong'].search([('nhan_vien_id', '=', record.nhan_vien_id.id)], limit=1)
+            if hop_dong:
+                max_days = 0
+                if record.loai_nghi_phep == 'nghi_phep':
+                    max_days = hop_dong.ngay_nghi_phep_toi_da
+                elif record.loai_nghi_phep == 'nghi_om':
+                    max_days = hop_dong.so_ngay_nghi_om
+                elif record.loai_nghi_phep == 'nghi_co_luong':
+                    max_days = hop_dong.ngay_nghi_co_luong
+                elif record.loai_nghi_phep == 'nghi_dac_biet':
+                    max_days = hop_dong.nghi_phep_dac_biet
+                
+                if record.so_ngay_nghi > max_days:
+                    raise ValidationError("Số ngày nghỉ %s không được vượt quá %s ngày." % (record.loai_nghi_phep, max_days))
+                else:
+                    # Tự động duyệt nếu đủ điều kiện
+                    record.trang_thai = 'da_duyet'

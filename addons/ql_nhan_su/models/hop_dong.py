@@ -13,4 +13,7 @@ class HopDong(models.Model):
         ('expired', 'Hết Hạn'),
     ], string='Trạng Thái', default='active', required=True)
     tu_dong_duyet = fields.Boolean(string="Tự động duyệt nghỉ phép", default=False)
-    ngay_nghi_toi_da = fields.Integer(string="Số ngày nghỉ tối đa", default=0)
+    ngay_nghi_phep_toi_da = fields.Integer(string="Số ngày nghỉ phép tối đa", default=12)
+    so_ngay_nghi_om = fields.Integer(string="Số ngày nghỉ ốm tối đa", default=10)
+    nghi_phep_dac_biet = fields.Integer(string="Số ngày nghỉ đặc biệt tối đa", default=3)
+    ngay_nghi_co_luong = fields.Integer(string="Số ngày nghỉ có lương tối đa", default=5)

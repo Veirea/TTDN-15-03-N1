@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_lich_su_dang_ky_form" model="ir.ui.view">
+        <field name="name">lich_su_dang_ky.form</field>
+        <field name="model">lich_su_dang_ky</field>
+        <field name="arch" type="xml">
+            <form string="Lịch Sử Đăng Ký">
+                <sheet>
+                    <group col="4">
+                        <field name="nhan_vien_id" readonly="1"/>
+                        <field name="ca_lam_viec" readonly="1"/>
+                        <field name="ngay_lam_viec" readonly="1"/>
+                        <field name="trang_thai" readonly="1"/>
+                        <field name="ghi_chu"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   
+    <record id="view_lich_su_dang_ky_tree" model="ir.ui.view">
+        <field name="name">lich_su_dang_ky.tree</field>
+        <field name="model">lich_su_dang_ky</field>
+        <field name="arch" type="xml">
+            <tree string="Lịch Sử Đăng Ký">
+                <field name="nhan_vien_id"/>
+                <field name="ca_lam_viec"/>
+                <field name="ngay_lam_viec"/>
+                <field name="trang_thai"/>
+                <field name="ghi_chu"/>
+            </tree>
+        </field>
+    </record>
+
+  
+    <record id="view_lich_su_dang_ky_search" model="ir.ui.view">
+        <field name="name">lich_su_dang_ky.search</field>
+        <field name="model">lich_su_dang_ky</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nhan_vien_id"/>
+                <field name="ca_lam_viec"/>
+                <field name="ngay_lam_viec"/>
+                <field name="trang_thai"/>
+            </search>
+        </field>
+    </record>
+
+  
+    <record id="action_lich_su_dang_ky" model="ir.actions.act_window">
+        <field name="name">Lịch Sử Đăng Ký</field>
+        <field name="res_model">lich_su_dang_ky</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+   
+    <!-- <record id="menu_lich_su_dang_ky" model="ir.ui.menu">
+        <field name="name">Lịch Sử Đăng Ký</field>
+        <field name="parent_id" ref="your_parent_menu_id"/> 
+        <field name="action" ref="action_lich_su_dang_ky"/>
+    </record> -->
+</odoo>

@@ -20,30 +20,25 @@
                             <group col="4">
                                 <field name="phong_ban_id" readonly="1"/>
                                 <field name="chuc_vu_id" readonly="1"/>
+                                <field name="ma_dinh_danh" readonly="1"/>
+                                <field name="so_dien_thoai" readonly="1"/>
                             </group>
                         </page>
-                        <!-- <page string="Thống Kê">
-                            <group col="4">
-                                <field name="so_ngay_nghi" readonly="1"/>
-                                <field name="so_ngay_nghi_con_lai" readonly="1"/>
-                            </group>
-                        </page> -->
                         <page string="Tệp Lưu Trữ">
-                                <group>
-                                    <field name="luu_file_id">
-                                        <tree editable="bottom">
-                                            <field name="luu_file" filename="luu_file_name" widget="binary"/>
-                                            <field name="luu_file_name"  readonly="1"/>
-                                        </tree>
-                                    </field>
-                                </group>
-                            </page>
+                            <group>
+                                <field name="luu_file_id">
+                                    <tree editable="bottom">
+                                        <field name="luu_file" filename="luu_file_name" widget="binary"/>
+                                        <field name="luu_file_name" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
-
 
     <record id="view_yeu_cau_nghi_phep_tree" model="ir.ui.view">
         <field name="name">yeu_cau_nghi_phep.tree</field>
@@ -56,11 +51,11 @@
                 <field name="ngay_bat_dau"/>
                 <field name="ngay_ket_thuc"/>
                 <field name="loai_nghi_phep"/> 
-                <field name="trang_thai"/>
+                <field name="trang_thai" decoration-danger="trang_thai == 'tu_choi'"  
+                decoration-success="trang_thai == 'da_duyet'" />
             </tree>
         </field>
     </record>
-
 
     <record id="view_yeu_cau_nghi_phep_search" model="ir.ui.view">
         <field name="name">yeu_cau_nghi_phep.search</field>
@@ -74,10 +69,9 @@
         </field>
     </record>
 
- 
     <record id="action_yeu_cau_nghi_phep" model="ir.actions.act_window">
         <field name="name">Yêu Cầu Nghỉ Phép</field>
         <field name="res_model">yeu_cau_nghi_phep</field>
-        <field name="view_mode">tree,form,graph</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>

@@ -24,5 +24,11 @@
             sequence="3"
             action="action_yeu_cau_nghi_phep"
         />
+        <!-- <menuitem name="Lịch Sử Đăng Ký" 
+            id="menu_lich_su_dang_ky" 
+            parent="menu_root" 
+            sequence="4"
+            action="action_lich_su_dang_ky"
+        /> -->
     </data>
 </odoo>

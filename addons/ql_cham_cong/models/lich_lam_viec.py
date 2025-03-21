@@ -43,10 +43,16 @@ class LichLamViec(models.Model):
     ngay_lam_viec = fields.Date(string="Ngày làm việc", default=fields.Date.today(), required=True)
     gio_bat_dau = fields.Float("Giờ Bắt Đầu" )
     gio_ket_thuc = fields.Float("Giờ Kết Thúc")
+    ma_dinh_danh = fields.Char(related='nhan_vien_id.ma_dinh_danh', string="Mã Định Danh", readonly=True)
+    so_dien_thoai = fields.Char(related='nhan_vien_id.so_dien_thoai', string="Số Điện Thoại", readonly=True)
     tong_gio = fields.Float('Tổng Giờ Làm', compute='_compute_tong_gio', store=True)
     nhan_vien_id = fields.Many2one('nhan_vien', string="Nhân viên")
     phong_ban_id = fields.Many2one('phong_ban', string="Phòng ban", compute='_compute_phong_ban_va_chuc_vu', store=True)
     chuc_vu_id = fields.Many2one('chuc_vu', string="Chức vụ", compute='_compute_phong_ban_va_chuc_vu', store=True)
+    lich_su_dang_ky_ids = fields.One2many('lich_su_dang_ky', 'lich_lam_viec_id', string="Lịch Sử Đăng Ký")
+    luu_file_id = fields.One2many('luu_file', inverse_name ='lich_lam_viec_id', string="Up file cần khi mức độ ưu tiên cao")
+    luu_file = fields.Binary("Tệp", attachment=True)
+    luu_file_name = fields.Char("Tên Tệp")
     mo_ta = fields.Text(string="Mô tả")
 
 
@@ -100,4 +106,16 @@ class LichLamViec(models.Model):
         return record
     
 
+    @api.model
+    def create(self, vals):
+        """Tự động duyệt hoặc từ chối ngay khi tạo và ghi lại lịch sử đăng ký."""
+        record = super(LichLamViec, self).create(vals)
+        record.trang_thai = random.choice(['da_duyet', 'tu_choi'])  
     
+        # Ghi lại lịch sử đăng ký
+        self.env['lich_su_dang_ky'].create({
+            'lich_lam_viec_id': record.id,
+            'ghi_chu': "Đăng ký ca làm việc mới.",
+        })
+    
+        return record

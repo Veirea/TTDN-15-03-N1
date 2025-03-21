@@ -37,7 +37,8 @@
                     <field name="gio_check_in"/>
                     <field name="lich_lam_viec_id"/>
                     <field name="ca_lam_viec"/>
-                    <field name="trang_thai_diem_danh"/>
+                    <field name="trang_thai_diem_danh"  decoration-danger="trang_thai_diem_danh == 'muon'" 
+                                                        decoration-success="trang_thai_diem_danh == 'som'"/>
                 </tree>
             </field>
         </record>
